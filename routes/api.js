@@ -20,7 +20,7 @@ var extend = function(obj, extObj) {
 /* api individual collections router */
 
 // get specified individuals collections list ( GET route )
-router.get('/:individ/:collection', function(req, res, next) {
+router.get('/:individ/:collection', function(req, res) {
   indsCol.findOne({individual: req.params.individ, colcategory: req.params.collection}, function(err, doc){
 	 	if(doc){
 	 			res.send(doc.colction);
@@ -31,7 +31,7 @@ router.get('/:individ/:collection', function(req, res, next) {
 });
 
 // post an item to specified individuals collections list ( POST route )
-router.post('/:individ/:collection', function(req, res, next) {
+router.post('/:individ/:collection', function(req, res) {
 	req.body = extend(req.body, {_id: shortid.generate()});
 
 	indsCol.findOne({individual: req.params.individ, colcategory: req.params.collection}, function(err, ind){
@@ -64,7 +64,7 @@ router.post('/:individ/:collection', function(req, res, next) {
 });
 
 // get a specific item from specified individuals collections list ( GET route )
-router.get('/:individ/:collection/:id', function(req, res, next) {
+router.get('/:individ/:collection/:id', function(req, res) {
   indsCol.findOne({individual: req.params.individ, colcategory: req.params.collection}, function(err, ind){
 		if (err) return console.error(err);
 
@@ -83,7 +83,7 @@ router.get('/:individ/:collection/:id', function(req, res, next) {
 });
 
 // put (update) a specific item in specified individuals collections list ( PUT route )
-router.put('/:individ/:collection/:id', function(req, res, next) {
+router.put('/:individ/:collection/:id', function(req, res) {
   indsCol.findOne({individual: req.params.individ, colcategory: req.params.collection}, function(err, ind){
 		if (err) return console.error(err);
 
@@ -108,7 +108,7 @@ router.put('/:individ/:collection/:id', function(req, res, next) {
 });
 
 // delete a specific item from specified individuals collections list ( DELETE route )
-router.delete('/:individ/:collection/:id', function(req, res, next) {
+router.delete('/:individ/:collection/:id', function(req, res) {
   indsCol.findOne({individual: req.params.individ, colcategory: req.params.collection}, function(err, ind){
 		if (err) return console.error(err);
 
